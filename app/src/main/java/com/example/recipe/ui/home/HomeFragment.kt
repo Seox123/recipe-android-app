@@ -28,8 +28,6 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        try {
-
         val homeViewModel =
             ViewModelProvider(this).get(HomeViewModel::class.java)
 
@@ -47,10 +45,6 @@ class HomeFragment : Fragment() {
         }
 
         return root
-        } catch (e: java.lang.Exception) {
-            Log.e("ERROR1", "onCreateView", e)
-            throw e
-        }
     }
 
     override fun onDestroyView() {

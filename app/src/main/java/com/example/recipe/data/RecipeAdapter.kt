@@ -17,10 +17,6 @@ import org.json.JSONObject
 class RecipeAdapter(private val dataSet: Array<JSONObject>) :
     RecyclerView.Adapter<RecipeAdapter.ViewHolder>() {
 
-    /**
-     * Provide a reference to the type of views that you are using
-     * (custom ViewHolder).
-     */
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val recipeImage: ImageView
         val recipeName: TextView
@@ -37,6 +33,7 @@ class RecipeAdapter(private val dataSet: Array<JSONObject>) :
 
     // Create new views (invoked by the layout manager)
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
+
         // Create a new view, which defines the UI of the list item
         val view = LayoutInflater.from(viewGroup.context)
             .inflate(R.layout.recipe_list_item, viewGroup, false)
@@ -54,7 +51,8 @@ class RecipeAdapter(private val dataSet: Array<JSONObject>) :
             .getString("strMealThumb"))
             .into(viewHolder.recipeImage)
         viewHolder.recipeImage.setOnClickListener(View.OnClickListener {
-            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(dataSet[position].getString("strSource")))
+            val intent = Intent(Intent.ACTION_VIEW,
+                Uri.parse(dataSet[position].getString("strSource")))
             viewHolder.recipeImage.context.startActivity(intent)
         })
         viewHolder.recipeName.text = dataSet[position].getString("strMeal")
