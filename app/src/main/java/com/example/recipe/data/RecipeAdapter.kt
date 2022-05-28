@@ -1,10 +1,13 @@
 package com.example.recipe.data
 
+import android.content.Intent
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.recipe.R
 import com.squareup.picasso.Picasso
@@ -50,6 +53,10 @@ class RecipeAdapter(private val dataSet: Array<JSONObject>) :
             .load(dataSet[position]
             .getString("strMealThumb"))
             .into(viewHolder.recipeImage)
+        viewHolder.recipeImage.setOnClickListener(View.OnClickListener {
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(dataSet[position].getString("strSource")))
+            viewHolder.recipeImage.context.startActivity(intent)
+        })
         viewHolder.recipeName.text = dataSet[position].getString("strMeal")
         viewHolder.recipeSubtext.text = dataSet[position].getString("strInstructions")
         viewHolder.recipeCategory.text = dataSet[position].getString("strCategory")

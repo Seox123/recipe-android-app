@@ -7,7 +7,8 @@ import androidx.lifecycle.ViewModel
 class InfoViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "Feel free to click the refresh button to get a new random recipe!\n"
+        value = "Feel free to click the refresh button to get a new random recipe.\n" +
+                "\nClick on the images to go to the recipe source links!"
     }
     val text: LiveData<String> = _text
 }
